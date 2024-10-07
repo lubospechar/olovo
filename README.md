@@ -1,6 +1,3 @@
-Zde je upravená a strukturovanější verze tvého README.md s ohledem na logičnost a přehlednost:
-
-markdown
 
 # Olovo - TAČR Projekt
 
