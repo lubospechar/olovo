@@ -37,16 +37,13 @@ class Command(BaseCommand):
             # Najdeme nebo vytvoříme typ lokality
             location_type, created = LocationType.objects.get_or_create(location_type=location_type_value)
 
-            # Vytvoříme nový záznam pro vzorek
-            sample, created = Sample.objects.get_or_create(
+            # Vytvoříme nový záznam pro vzorek bez kontroly na unikátnost
+            Sample.objects.create(
                 year=year,
                 location_name=location_name,
                 location_type=location_type
             )
 
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'Přidán vzorek: {location_name} ({year})'))
-            else:
-                self.stdout.write(self.style.WARNING(f'Vzorek již existuje: {location_name} ({year})'))
+            self.stdout.write(self.style.SUCCESS(f'Přidán vzorek: {location_name} ({year})'))
 
         self.stdout.write(self.style.SUCCESS('Import vzorků dokončen.'))
