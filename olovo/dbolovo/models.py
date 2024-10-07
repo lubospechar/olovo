@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class LocationType(models.Model):
     """
     Model reprezentující typ lokality, především mokřady jako např. rybník, tůň, stoka.
@@ -15,7 +16,7 @@ class LocationType(models.Model):
     class Meta:
         verbose_name = "Typ lokality"
         verbose_name_plural = "Typy lokalit"
-        ordering = ['location_type']
+        ordering = ["location_type"]
 
     def __str__(self):
         return self.location_type
