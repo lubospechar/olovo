@@ -8,7 +8,8 @@ class LocationType(models.Model):
     location_type = models.CharField(
         max_length=100,
         verbose_name="Typ lokality",
-        help_text="Zadejte název typu mokřadu, například: rybník, tůň, stoka"
+        help_text="Zadejte název typu mokřadu, například: rybník, tůň, stoka",
+        unique=True,
     )
 
     class Meta:
