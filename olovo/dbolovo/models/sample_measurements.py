@@ -31,6 +31,8 @@ class SampleMeasurement(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Jednotka",
         help_text="Vyberte jednotku měření",
+        null=True,
+        blank=True,
     )
 
     class Meta:

@@ -5,6 +5,7 @@ class Unit(models.Model):
     """
     Model reprezentující jednotku měření, jako například mg/l, pH apod.
     """
+
     name = models.CharField(
         max_length=50,
         unique=True,

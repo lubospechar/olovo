@@ -5,6 +5,7 @@ class Parameter(models.Model):
     """
     Model reprezentující měřený parametr, jako například pH, obsah těžkých kovů apod.
     """
+
     name = models.CharField(
         max_length=100,
         unique=True,

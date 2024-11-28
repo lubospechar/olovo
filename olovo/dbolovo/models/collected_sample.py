@@ -14,7 +14,7 @@ class CollectedSample(models.Model):
         max_length=100,
         blank=True,
         verbose_name="Identifikátor vzorku",
-        help_text="Zadejte jedinečný identifikátor vzorku"
+        help_text="Zadejte jedinečný identifikátor vzorku",
     )
 
     year = models.IntegerField(
@@ -51,4 +51,5 @@ class CollectedSample(models.Model):
         if self.point:
             return f"{round(self.point.x, 5)}, {round(self.point.y, 5)}"
         return ""
-    get_coordinates.short_description = 'Souřadnice'
+
+    get_coordinates.short_description = "Souřadnice"
