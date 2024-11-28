@@ -64,3 +64,8 @@ class SampleMeasurementAdmin(admin.ModelAdmin):
     search_fields = ("sample__identifier", "parameter__name")
     list_filter = ("parameter", "unit")
     ordering = ("sample", "parameter")
+
+
+admin.site.site_header = "Olovo Administrace"
+admin.site.site_title = "Olovo Admin Portal"
+admin.site.index_title = "Vítejte v administraci Olovo"
