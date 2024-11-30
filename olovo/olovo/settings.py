@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "django.contrib.gis",  # Přidej GeoDjango
+    'rest_framework',
     "dbolovo",
 ]
 
