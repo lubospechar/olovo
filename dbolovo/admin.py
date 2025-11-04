@@ -54,3 +54,4 @@ class UnitAdmin(admin.ModelAdmin):
     ordering = ("name",)
     list_per_page = 50
 
+
