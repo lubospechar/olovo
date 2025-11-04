@@ -1,71 +1,48 @@
-from django.contrib import admin
-from dbolovo.models import (
-    LocationType,
-    CollectedSample,
-    Parameter,
-    Unit,
-    SampleMeasurement,
-)
-from django.contrib.gis.admin import GISModelAdmin
+from django.contrib.gis import admin
+from leaflet.admin import LeafletGeoAdmin
 
-
-class SampleMeasurementInline(admin.TabularInline):
-    model = SampleMeasurement
-    extra = 1
-
-
-@admin.register(LocationType)
-class LocationTypeAdmin(admin.ModelAdmin):
-    list_display = ("location_type",)
-    search_fields = ("location_type",)
-    ordering = ("location_type",)
-
-
-@admin.register(CollectedSample)
-class CollectedSampleAdmin(GISModelAdmin):
-    gis_widget_kwargs = {
-        "attrs": {
-            "default_lon": 15.5,
-            "default_lat": 49.8,
-            "default_zoom": 7,
-        },
-    }
-    list_display = (
-        "location_name",
-        "identifier",
-        "year",
-        "location_type",
-        "get_coordinates",
-    )
-    search_fields = ("location_name", "year")
-    list_filter = ("location_type",)
-    ordering = ("location_name", "year")
-    fields = ("year", "location_name", "location_type", "point")
-    inlines = [SampleMeasurementInline]
+from dbolovo.models import Parameter, LocationType, Location
 
 
 @admin.register(Parameter)
 class ParameterAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
+    # Sloupce zobrazené v přehledu objektů
+    list_display = ("name", "unit")
+
+    # Umožní fulltextové vyhledávání podle názvu a jednotky
+    search_fields = ("name", "unit")
+
+    # Boční filtr podle jednotky (praktické při menším počtu jednotek)
+    list_filter = ("unit",)
+
+    # Výchozí řazení a počet záznamů na stránku
     ordering = ("name",)
+    list_per_page = 50
 
-
-@admin.register(Unit)
-class UnitAdmin(admin.ModelAdmin):
+@admin.register(LocationType)
+class LocationTypeAdmin(admin.ModelAdmin):
+    # Sloupce zobrazené v přehledu
     list_display = ("name",)
+
+    # Umožní fulltextové vyhledávání podle názvu typu lokality
     search_fields = ("name",)
+
+    # Výchozí řazení a počet záznamů na stránku
     ordering = ("name",)
+    list_per_page = 50
 
+@admin.register(Location)
+class LocationAdmin(LeafletGeoAdmin):
+    list_display = ("name", "location_type", "lat_display", "lon_display")
+    search_fields = ("name", "location_type__name")
+    list_filter = ("location_type",)
+    ordering = ("name",)
+    list_per_page = 50
 
-@admin.register(SampleMeasurement)
-class SampleMeasurementAdmin(admin.ModelAdmin):
-    list_display = ("sample", "parameter", "value", "unit")
-    search_fields = ("sample__identifier", "parameter__name")
-    list_filter = ("parameter", "unit")
-    ordering = ("sample", "parameter")
+    def lat_display(self, obj):
+        return obj.gps.y if obj.gps else None
+    lat_display.short_description = "Lat"
 
-
-admin.site.site_header = "Olovo Administrace"
-admin.site.site_title = "Olovo Admin Portal"
-admin.site.index_title = "Vítejte v administraci Olovo"
+    def lon_display(self, obj):
+        return obj.gps.x if obj.gps else None
+    lon_display.short_description = "Lon"

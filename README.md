@@ -17,7 +17,7 @@ Tento software je postaven na **Django** frameworku a používá **PostgreSQL** 
 
 Pro úspěšné spuštění projektu jsou vyžadovány následující technologie a knihovny:
 
-- **Python 3.10+**
+- **Python 3.11+**
 - **Django 5.1.3**
 - **PostgreSQL** s nainstalovaným rozšířením **PostGIS**
 - **pip** pro správu balíčků Pythonu
@@ -26,7 +26,7 @@ Pro úspěšné spuštění projektu jsou vyžadovány následující technologi
 
 1. **Klonování repozitáře:**
    ```bash
-   git clone <url_repozitáře>
+   git clon e <url_repozitáře>
    cd <název_projektu>
    ```
 

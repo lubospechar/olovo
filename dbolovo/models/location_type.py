@@ -1,24 +1,27 @@
 # models/location_type.py
-from django.contrib.gis.db import models
+from django.db import models  # stačí běžný model, pokud nepoužíváš GIS pole
 
 
 class LocationType(models.Model):
     """
-    Model reprezentující typ lokality, především mokřady
-    jako např. rybník, tůň, stoka.
+    Model reprezentující typ lokality, především mokřady.
+    Např. rybník, tok, apod.
     """
 
-    location_type = models.CharField(
+    # Název typu lokality (unikátní – např. „rybník“, „tůň“)
+    name = models.CharField(
         max_length=100,
         verbose_name="Typ lokality",
-        help_text="Zadejte název typu mokřadu, například: rybník, tůň, stoka",
+        help_text="Zadejte název typu mokřadu, například: rybník, tok, zemědělská půda",
         unique=True,
     )
 
     class Meta:
+        # Nastavení pro administraci a ORM
         verbose_name = "Typ lokality"
         verbose_name_plural = "Typy lokalit"
-        ordering = ["location_type"]
+        ordering = ["name"]  # výchozí řazení podle názvu
 
     def __str__(self):
-        return self.location_type
+        # Lidsky čitelná reprezentace objektu (zobrazuje se např. v adminu)
+        return self.name

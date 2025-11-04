@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "leaflet",
     "django.contrib.gis",
     'rest_framework',
     'rest_framework_gis',
@@ -114,3 +115,16 @@ STATIC_ROOT = config("STATIC_ROOT")
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LEAFLET_CONFIG = {
+    "DEFAULT_CENTER": (49.8, 15.5),   # střed ČR (lat, lon)
+    "DEFAULT_ZOOM": 6,
+    "MIN_ZOOM": 2,
+    "MAX_ZOOM": 18,
+    "TILES": [
+        ("OpenStreetMap",
+         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+         {"attribution": "&copy; OpenStreetMap contributors"}),
+    ],
+    "SCALE": "metric",
+}
