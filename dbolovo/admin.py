@@ -1,7 +1,7 @@
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 
-from dbolovo.models import Parameter, LocationType, Location
+from dbolovo.models import Parameter, LocationType, Location, Unit
 
 
 @admin.register(Parameter)
@@ -46,3 +46,11 @@ class LocationAdmin(LeafletGeoAdmin):
     def lon_display(self, obj):
         return obj.gps.x if obj.gps else None
     lon_display.short_description = "Lon"
+
+@admin.register(Unit)
+class UnitAdmin(admin.ModelAdmin):
+    list_display = ("name", "symbol")
+    search_fields = ("name",)
+    ordering = ("name",)
+    list_per_page = 50
+
