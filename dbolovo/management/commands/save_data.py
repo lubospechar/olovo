@@ -10,8 +10,8 @@ from django.db import transaction
 class Command(BaseCommand):
     def handle(self, *args, **options):
         file = '/home/lubos/enki/olovo/zdroj_1.ods'
-        list = 'B'
-        first_row = 4
+        list = 'A'
+        first_row = 3
 
         parameter = Parameter.objects.get(pk=1)
         print(parameter)
@@ -23,8 +23,8 @@ class Command(BaseCommand):
                 pk_value = row[0]
                 year = row[3]
                 original_name = row[4]
-                sample_number = row[5]
-                description = row[6]
+                sample_number = row[2]
+                description = row[5]
 
 
 
