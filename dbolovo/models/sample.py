@@ -10,4 +10,7 @@ class Sample(models.Model):
     sample_number = models.CharField(max_length=100, null=True, blank=True)
     description = models.TextField()
 
+    class Meta:
+        ordering = ["year", "location"]
+        unique_together = ["year", "location", "sample_number"]
 
