@@ -1,7 +1,7 @@
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 
-from dbolovo.models import Parameter, LocationType, Location, Unit, Sample
+from dbolovo.models import Parameter, LocationType, Location, Unit, Sample, Measure
 
 
 @admin.register(Parameter)
@@ -83,3 +83,8 @@ class SampleAdmin(admin.ModelAdmin):
     # Počet položek na stránku v changelistu
     list_per_page = 50
 
+@admin.register(Measure)
+class MeasureAdmin(admin.ModelAdmin):
+    list_display = ("sample", "parameter", "value", "non_measurable_value")
+    list_filter = ("parameter", "non_measurable_value")
+    search_fields = ("sample__identifier", "parameter__name")
