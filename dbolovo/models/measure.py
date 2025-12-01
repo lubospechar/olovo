@@ -8,3 +8,7 @@ class Measure(models.Model):
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
     value = models.FloatField()
     non_measurable_value = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Měření"
+        verbose_name_plural = "Měření"

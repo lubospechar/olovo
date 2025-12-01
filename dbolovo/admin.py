@@ -33,8 +33,8 @@ class LocationTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Location)
 class LocationAdmin(LeafletGeoAdmin):
-    list_display = ("name", "location_type", "lat_display", "lon_display")
-    search_fields = ("name", "location_type__name")
+    list_display = ("name", "id", "location_type", "lat_display", "lon_display")
+    search_fields = ("name", "id")
     list_filter = ("location_type",)
     ordering = ("name",)
     list_per_page = 50

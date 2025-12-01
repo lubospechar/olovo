@@ -13,4 +13,6 @@ class Sample(models.Model):
     class Meta:
         ordering = ["year", "location"]
         unique_together = ["year", "location", "sample_number"]
+        verbose_name = "Vzorek"
+        verbose_name_plural = "Vzorky"
 
