@@ -58,11 +58,11 @@ class UnitAdmin(admin.ModelAdmin):
 @admin.register(Sample)
 class SampleAdmin(admin.ModelAdmin):
     # Sloupce v přehledu
-    list_display = ("original_name", "sample_number", "year", "location")
+    list_display = ("original_name", "sample_number", "year", "location", 'xy')
 
     # Vyhledávání
     search_fields = ("original_name", "sample_number", "description")
-
+    list_editable = ("location", )
     # Filtry v postranním panelu
     list_filter = ("year",)
 

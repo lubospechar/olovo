@@ -8,9 +8,9 @@ from django.db import transaction
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        file = '/home/lubos/enki/olovo/zdroj_2.ods'
-        list = 'A'
-        first_row = 11
+        file = '/home/lubos/tmp/samplas.ods'
+        list = 'List1'
+        first_row = 0
 
         parameter = Parameter.objects.get(pk=1)
         print(parameter)
@@ -19,11 +19,11 @@ class Command(BaseCommand):
 
         with transaction.atomic():
             for row in df.iloc[first_row:].itertuples(index=False):
-                pk_value = row[0]
-                year = row[3]
-                sample_number = row[5]
+                pk_value = row[5]
+                year = row[0]
+                sample_number = row[2]
 
-                data = row[13]
+                data = row[4]
 
 
 

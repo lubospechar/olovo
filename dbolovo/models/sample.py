@@ -1,6 +1,7 @@
 from django.db import models
 
 from dbolovo.fields import SpecialYearField
+from dbolovo.models import location
 from dbolovo.models.location import Location
 
 class Sample(models.Model):
@@ -16,3 +17,5 @@ class Sample(models.Model):
         verbose_name = "Vzorek"
         verbose_name_plural = "Vzorky"
 
+    def xy(self):
+        return self.location.gps.x, self.location.gps.y

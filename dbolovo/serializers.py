@@ -26,7 +26,6 @@ class MeasureSerializer(serializers.ModelSerializer):
         return obj.parameter.name if obj.parameter else None
 
 class SampleWithMeasuresSerializer(serializers.ModelSerializer):
-    # reverzní vztah z Measure.sample → Sample.measure_set
     measures = MeasureSerializer(
         source="measure_set",
         many=True,
